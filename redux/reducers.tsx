@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import { codexist } from "./codexist/reducers";
+import { konzek } from "./konzek/reducers";
 
 const reducers = combineReducers({
-    codexist: codexist,
+    konzek: konzek,
 });
 
 export default reducers;

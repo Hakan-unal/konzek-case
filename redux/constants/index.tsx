@@ -1,2 +1,2 @@
 //  CONSTANTS
-export const CHANGED = "Codexist Redux Changed, Happy Coding:)";
+export const CHANGED = "Konzek Redux Changed, Happy Coding:)";

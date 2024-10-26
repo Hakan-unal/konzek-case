@@ -54,8 +54,8 @@ const Home = (props: any) => {
   }, []);
 
   useEffect(() => {
-    if (globalState.codexist) {
-      setBasket(globalState.codexist.state.basket);
+    if (globalState.konzek) {
+      setBasket(globalState.konzek.state.basket);
     }
   }, [globalState]);
 

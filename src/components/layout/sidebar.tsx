@@ -35,8 +35,8 @@ const Sidebar: React.FC = (...props) => {
   }
 
   useEffect(() => {
-    if (globalState.codexist) {
-      setBasket(globalState.codexist.state.basket);
+    if (globalState.konzek) {
+      setBasket(globalState.konzek.state.basket);
       handleTotal()
     }
   }, [globalState]);
