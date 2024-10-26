@@ -26,30 +26,29 @@ const Sidebar: React.FC = (...props) => {
     setBasket(tempArr);
   };
 
-  const handleTotal=()=>{
-    let tempTotal=0
-    basket.forEach((obj:any)=>{
-      tempTotal+=obj.price
-    })
-    setTotal(tempTotal)
-  }
+  const handleTotal = () => {
+    let tempTotal = 0;
+    basket.forEach((obj: any) => {
+      tempTotal += obj.price;
+    });
+    setTotal(tempTotal);
+  };
 
   useEffect(() => {
     if (globalState.konzek) {
       setBasket(globalState.konzek.state.basket);
-      handleTotal()
+      handleTotal();
     }
   }, [globalState]);
 
   useEffect(() => {
-      handleTotal()
-    
+    handleTotal();
   }, [basket]);
 
   const BasketItem = () => {
     return basket?.map((obj: any, index: number) => (
       <Card
-      bordered={false}
+        bordered={false}
         key={index}
         extra={
           <FaRegTrashAlt
@@ -58,8 +57,11 @@ const Sidebar: React.FC = (...props) => {
             color="red"
           />
         }
-        style={{ textAlign: "center" }}
+        style={{ textAlign: "center", flex: "row" }}
       >
+        <Text>{obj.name}</Text>
+        <Divider />
+
         <Image preview={false} width={50} src={obj.image} />
         <Divider />
         <Text type="success">{obj.price} TL</Text>
@@ -83,8 +85,7 @@ const Sidebar: React.FC = (...props) => {
 
       {BasketItem()}
 
-      <Divider >Total: {total} TL</Divider>
-
+      <Divider>Total: {total} TL</Divider>
     </Sider>
   );
 };
