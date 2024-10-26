@@ -46,6 +46,10 @@ const Home = (props: any) => {
 
   const handleLogout=()=>{
     setUser(null)
+    dispatch({
+      type: CHANGED,
+      state: { basket: [] },
+    });
   }
 
   const addBasket = (obj: any) => {
