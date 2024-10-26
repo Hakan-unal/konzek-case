@@ -3,16 +3,17 @@ import { SmileOutlined } from '@ant-design/icons';
 
 notification.config({
     duration: 2.5,
-    maxCount: 1,
-    placement: "topLeft"
+    maxCount: 3,
+    placement: "topRight"
 });
 
-export const showNotification = (type: any, title: string, description: string, style: any) => {
-    notification["success"]({
-        message: title,
-        description: description,
-        className: 'custom-class',
-        style: style ? style : null,
-        icon: <SmileOutlined style={{ color: '#108ee9' }} />,
-    });
+export const showNotification = (type: string, message: string, description: string, style: any) => {
+    switch (type) {
+        case "error": notification.error({ message, description, style }); break;
+        case "info": notification.info({ message, description, style }); break;
+        case "success": notification.success({ message, description, style }); break;
+        case "warning": notification.warning({ message, description, style }); break;
+
+    }
+
 };
