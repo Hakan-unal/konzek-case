@@ -11,11 +11,10 @@ import { useEffect } from "react";
 import { navigator } from "./components/general/navigator";
 import { useNavigate } from "react-router-dom";
 
-
 const { Content } = Layout;
 
 const App: React.FC = () => {
-  const [user, setUser] = useLocalStorage<any>("user", {})
+  const [user, setUser] = useLocalStorage<any>("user", null)
   const navigate = useNavigate();
 
   const {
@@ -23,7 +22,7 @@ const App: React.FC = () => {
   } = theme.useToken();
 
   useEffect(() => {
-    if (!user.accessToken) navigator(navigate, "/login")
+    if (!user?.accessToken) navigator(navigate, "/login")
   }, [user])
 
   return (<Layout >

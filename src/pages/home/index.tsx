@@ -7,6 +7,7 @@ import {
   Button,
   Divider,
   Input,
+  Popover,
 } from "antd";
 import { useEffect, useState } from "react";
 import { LuFileSearch } from "react-icons/lu";
@@ -14,6 +15,9 @@ import { getBooks } from "../../../service";
 import { showNotification } from "../../components/general/notification";
 import { CHANGED } from "../../../redux/constants";
 import { useDispatch, useSelector } from "react-redux";
+import { AiOutlineLogout } from "react-icons/ai";
+import useLocalStorage from "../../hooks/useLocalStorage";
+import { Link } from "react-router-dom";
 
 const { Paragraph, Text } = Typography;
 
@@ -23,6 +27,7 @@ const Home = (props: any) => {
   const [basket, setBasket] = useState([]);
   const dispatch = useDispatch();
   const globalState: any = useSelector((state) => state);
+  const [user, setUser] = useLocalStorage<any>("user", {})
 
   const handleBooks = async () => {
     const response = await getBooks();
@@ -39,12 +44,16 @@ const Home = (props: any) => {
     setSearched(tempArr);
   };
 
+  const handleLogout=()=>{
+    setUser(null)
+  }
+
   const addBasket = (obj: any) => {
     const tempArr: any = [...basket];
     tempArr.push(obj);
     dispatch({
       type: CHANGED,
-      state: { basket: tempArr }
+      state: { basket: tempArr },
     });
     setBasket(tempArr);
   };
@@ -61,9 +70,9 @@ const Home = (props: any) => {
 
   const BookCard = () => {
     return searched?.map((obj: any, index: number) => (
-      <Col key={index} md={12} lg={8} xxl={6}>
+      <Col key={index} md={8} lg={6} xxl={4}>
         <Card
-        extra={<Text type="success">{obj.price} TL</Text>}
+          extra={<Text type="success">{obj.price} TL</Text>}
           hoverable
           title={<Text ellipsis>{obj.name}</Text>}
           cover={
@@ -105,7 +114,7 @@ const Home = (props: any) => {
   };
 
   return (
-    <Card>
+    <Card title={<Link to={"/login"}><Popover content="Çıkış yapmak için tıklayınız"> <AiOutlineLogout  onClick={handleLogout} className="cursorPointer" size={30} /></Popover></Link> } >
       <Input
         allowClear
         onChange={handleInput}
