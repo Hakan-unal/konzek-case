@@ -1,5 +1,4 @@
 import { notification } from 'antd';
-import { SmileOutlined } from '@ant-design/icons';
 
 notification.config({
     duration: 2.5,

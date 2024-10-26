@@ -1,4 +1,4 @@
-import { Card, Form, Checkbox, Input, Button, Row, Col } from "antd";
+import { Card, Form, Input, Button, Row, Col } from "antd";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import mockUser from "../../staticData/user.json";
 import { showNotification } from "../../components/general/notification";
